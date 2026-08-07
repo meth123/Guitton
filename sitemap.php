@@ -8,6 +8,7 @@ $pages = [
     ['/consultoria.html', date('Y-m-d', filemtime(__DIR__ . '/consultoria.html'))],
     ['/parceiros.html', date('Y-m-d', filemtime(__DIR__ . '/parceiros.html'))],
     ['/blog.php', date('Y-m-d', filemtime(DATA_PATH . '/posts.json'))],
+    ['/privacidade.php', date('Y-m-d', filemtime(__DIR__ . '/privacidade.php'))],
 ];
 echo '<?xml version="1.0" encoding="UTF-8"?>' . "\n";
 ?>

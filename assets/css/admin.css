@@ -131,6 +131,23 @@ button, input, textarea { font: inherit; }
 
 .editor-side { display: grid; gap: 18px; }
 .editor-side h2 { margin: 0; color: var(--green-deep); font-size: 17px; }
+.ai-writing-panel { border-color: #a8ddb7; background: linear-gradient(145deg, #f2fbf4, #f8fcf9); }
+.ai-panel-heading { display: flex; align-items: center; gap: 12px; margin-bottom: 21px; }
+.ai-panel-heading h2 { font-size: 19px; }
+.ai-spark { width: 38px; height: 38px; display: grid; place-items: center; flex: 0 0 auto; border-radius: 50%; background: #073b28; color: #81e39d; font-size: 19px; }
+.ai-writing-panel > p:first-of-type { margin: 0 0 24px; color: #697a70; font-size: 12px; line-height: 1.65; }
+.ai-writing-panel > label { display: block; margin-bottom: 8px; color: #23613c; font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.15px; }
+.ai-writing-panel select { width: 100%; min-height: 53px; padding: 12px 40px 12px 14px; border: 1px solid #cbd8cf; border-radius: 10px; background: #fff; color: #173c29; font-size: 12px; font-weight: 600; cursor: pointer; }
+.ai-writing-panel select:focus { border-color: #42b766; outline: 0; box-shadow: 0 0 0 3px rgba(66,183,102,.13); }
+.ai-writing-button { min-height: 53px; margin-top: 22px; background: #073b28; border-color: #073b28; }
+.ai-writing-button:hover { background: #0a4b33; }
+.ai-loading-mark { display: none; width: 15px; height: 15px; border: 2px solid rgba(255,255,255,.35); border-top-color: #fff; border-radius: 50%; animation: ai-spin .75s linear infinite; }
+.is-loading .ai-loading-mark { display: inline-block; }
+.ai-feedback { min-height: 30px; margin: 20px 0 0; color: #718078; font-size: 9px; line-height: 1.55; }
+.ai-feedback.working { color: #376c49; }
+.ai-feedback.success { color: #08702d; }
+.ai-feedback.error { color: var(--danger); }
+@keyframes ai-spin { to { transform: rotate(360deg); } }
 .panel-title-row { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 22px; }
 .panel-step { width: 28px; height: 28px; display: grid; place-items: center; border-radius: 50%; background: #eef5f0; color: #61816c; font-size: 9px; font-weight: 700; }
 .status-dot { width: 10px; height: 10px; border-radius: 50%; background: #a4aca7; box-shadow: 0 0 0 5px #f0f2f0; }

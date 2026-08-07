@@ -84,6 +84,22 @@ function newsletter_message(array $post, array $subscriber): array
     return [$html, $text];
 }
 
+function newsletter_welcome_message(array $subscriber): array
+{
+    $unsubscribeUrl = absolute_url('/unsubscribe.php?token=' . rawurlencode((string) $subscriber['token']));
+    $blogUrl = absolute_url('/blog.php');
+    $logo = absolute_url('/assets/images/logo-guitton.png');
+    $html = '<!doctype html><html lang="pt-BR"><head><meta name="viewport" content="width=device-width"><meta charset="UTF-8"></head><body style="margin:0;background:#f2f5f3;font-family:Arial,sans-serif;color:#161918"><table role="presentation" width="100%" cellspacing="0" cellpadding="0"><tr><td style="padding:28px 12px"><table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="max-width:620px;margin:auto;background:#fff;border-radius:12px;overflow:hidden"><tr><td style="padding:28px;text-align:center;border-top:5px solid #078b37"><img src="' . e($logo) . '" width="190" alt="Guitton" style="max-width:55%;height:auto"></td></tr><tr><td style="padding:8px 36px 36px"><p style="color:#078b37;font-size:12px;letter-spacing:3px">INSCRIÇÃO CONFIRMADA</p><h1 style="font-size:28px;line-height:1.25">Você está na lista da Guitton</h1><p style="font-size:16px;line-height:1.65;color:#474d4a">A partir de agora, você receberá um aviso quando houver uma nova publicação no blog.</p><p style="padding:18px 0"><a href="' . e($blogUrl) . '" style="display:inline-block;padding:13px 24px;border-radius:999px;background:#078b37;color:#fff;text-decoration:none">Visitar o blog</a></p></td></tr><tr><td style="padding:22px 36px;background:#eef5f0;color:#59615d;font-size:12px;line-height:1.6">Guitton — Administração de imóveis e consultoria imobiliária em Santos, SP.<br><a href="' . e($unsubscribeUrl) . '" style="color:#078b37">Cancelar inscrição</a></td></tr></table></td></tr></table></body></html>';
+    $text = "Guitton — Inscrição confirmada\n\nVocê receberá um aviso quando houver uma nova publicação.\n\nVisitar o blog: {$blogUrl}\n\nCancelar inscrição: {$unsubscribeUrl}";
+    return [$html, $text];
+}
+
+function send_newsletter_welcome(array $subscriber): bool
+{
+    [$html, $text] = newsletter_welcome_message($subscriber);
+    return send_smtp_mail((string) $subscriber['email'], 'Inscrição confirmada | Guitton', $html, $text);
+}
+
 function notify_subscribers(array $post): array
 {
     $sent = 0;
