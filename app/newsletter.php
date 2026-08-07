@@ -15,9 +15,10 @@ function newsletter_rate_allowed(string $ip): bool
 {
     $file = DATA_PATH . '/login-attempts.json';
     $entries = read_json_file($file);
-    $key = 'newsletter_' . hash('sha256', $ip);
+    // Versioned key: avoids carrying over stale counters after a deployment.
+    $key = 'newsletter_v2_' . hash('sha256', $ip);
     $recent = array_values(array_filter((array) ($entries[$key]['times'] ?? []), fn($time) => (int) $time > time() - 3600));
-    if (count($recent) >= 5) return false;
+    if (count($recent) >= 12) return false;
     $recent[] = time();
     $entries[$key] = ['times' => $recent];
     write_json_file($file, $entries);
