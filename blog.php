@@ -119,6 +119,7 @@ $activePage = 'blog';
         <label for="newsletter-email">Seu melhor e-mail</label>
         <div class="newsletter-row"><input id="newsletter-email" name="email" type="email" required maxlength="254" placeholder="voce@exemplo.com"><button type="submit">Quero receber</button></div>
         <label class="consent"><input type="checkbox" name="consent" value="1" required> Concordo em receber avisos de novas publicações e sei que posso cancelar quando quiser.</label>
+        <p class="newsletter-feedback" data-newsletter-feedback role="status" aria-live="polite"></p>
       </form>
     </div>
   </section>

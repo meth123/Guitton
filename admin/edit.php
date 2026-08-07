@@ -87,6 +87,25 @@ require dirname(__DIR__) . '/partials/admin-header.php';
     </section>
 
     <aside class="editor-side">
+      <section class="admin-panel ai-writing-panel" data-ai-writing>
+        <div class="ai-panel-heading">
+          <span class="ai-spark" aria-hidden="true">✦</span>
+          <h2>Assistente de escrita</h2>
+        </div>
+        <p>Escolha uma ação. A IA usa título e resumo; nas duas últimas opções, também lê o texto atual.</p>
+        <label for="ai-writing-action">O que deseja fazer?</label>
+        <select id="ai-writing-action" data-ai-action>
+          <option value="create">Criar texto do zero</option>
+          <option value="improve">Melhorar o texto atual</option>
+          <option value="continue">Continuar escrevendo</option>
+        </select>
+        <button class="admin-button full-button ai-writing-button" type="button" data-ai-run>
+          <span data-ai-button-text>Executar com IA</span>
+          <span class="ai-loading-mark" aria-hidden="true"></span>
+        </button>
+        <p class="ai-feedback" data-ai-feedback aria-live="polite">Uso econômico ativado. Revise antes de publicar.</p>
+      </section>
+
       <section class="admin-panel publication-panel">
         <div class="panel-title-row"><h2>Publicação</h2><span class="status-dot <?= $isPublished ? 'live' : '' ?>"></span></div>
         <div class="current-status"><span>Status atual</span><strong><?= $isPublished ? 'Publicado' : 'Rascunho' ?></strong></div>

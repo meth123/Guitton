@@ -30,6 +30,11 @@ $fakePost = ['image' => 'assets/inexistente.jpg'];
 check(post_image_url($fakePost) === DEFAULT_SOCIAL_IMAGE, 'fallback de imagem social');
 check(absolute_url('/blog.php') === SITE_URL . '/blog.php', 'URL absoluta HTTPS configurada');
 
+[$invalidSubscription] = subscribe_email('email-invalido', true);
+check($invalidSubscription === false, 'newsletter rejeita endereço de e-mail inválido');
+[$welcomeHtml, $welcomeText] = newsletter_welcome_message(['token' => str_repeat('a', 48)]);
+check(str_contains($welcomeHtml, 'INSCRIÇÃO CONFIRMADA') && str_contains($welcomeText, 'Cancelar inscrição'), 'mensagem de confirmação da newsletter');
+
 $blockIp = '192.0.2.55';
 for ($attempt = 0; $attempt < 5; $attempt++) record_failed_login('blocked_test_user', $blockIp);
 $blocked = login_status('blocked_test_user', $blockIp);

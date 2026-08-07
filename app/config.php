@@ -36,6 +36,8 @@ define('SITE_URL', rtrim(env_value('SITE_URL', 'https://guitton.com.br'), '/'));
 define('SITE_NAME', 'Guitton');
 define('DEFAULT_SOCIAL_IMAGE', SITE_URL . '/assets/guitton-social.jpg');
 define('MAX_UPLOAD_BYTES', 5 * 1024 * 1024);
+define('GEMINI_API_KEY', env_value('GEMINI_API_KEY'));
+define('GEMINI_MODEL', env_value('GEMINI_MODEL', 'gemini-2.5-flash'));
 
 foreach ([DATA_PATH, UPLOAD_PATH] as $directory) {
     if (!is_dir($directory)) {

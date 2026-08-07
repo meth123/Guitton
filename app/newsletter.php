@@ -33,19 +33,22 @@ function subscribe_email(string $email, bool $consent): array
     $items = subscribers();
     foreach ($items as &$item) {
         if (hash_equals((string) $item['email'], $email)) {
-            if (($item['active'] ?? false) === true) return [true, 'Este e-mail já está inscrito.'];
+            if (($item['active'] ?? false) === true) return [true, 'Este e-mail já está inscrito.', $item];
             $item['active'] = true;
             $item['consented_at'] = date('c');
             $item['token'] = bin2hex(random_bytes(24));
-            write_json_file(DATA_PATH . '/subscribers.json', $items);
-            return [true, 'Inscrição reativada com sucesso.'];
+            $saved = write_json_file(DATA_PATH . '/subscribers.json', $items);
+            return $saved
+                ? [true, 'Inscrição reativada com sucesso.', $item]
+                : [false, 'Não foi possível concluir a inscrição agora.', null];
         }
     }
     unset($item);
-    $items[] = ['email' => $email, 'active' => true, 'token' => bin2hex(random_bytes(24)), 'consented_at' => date('c')];
+    $subscriber = ['email' => $email, 'active' => true, 'token' => bin2hex(random_bytes(24)), 'consented_at' => date('c')];
+    $items[] = $subscriber;
     return write_json_file(DATA_PATH . '/subscribers.json', $items)
-        ? [true, 'Inscrição realizada. Você receberá as próximas publicações.']
-        : [false, 'Não foi possível concluir a inscrição agora.'];
+        ? [true, 'Inscrição realizada. Você receberá as próximas publicações.', $subscriber]
+        : [false, 'Não foi possível concluir a inscrição agora.', null];
 }
 
 function unsubscribe_token(string $token): bool

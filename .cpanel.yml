@@ -3,7 +3,7 @@ deployment:
   tasks:
     - export DEPLOYPATH=$HOME/guitton.com.br
     - /bin/mkdir -p "$DEPLOYPATH/data" "$DEPLOYPATH/assets/uploads"
-    - /bin/cp index.html pos-locacao.html consultoria.html parceiros.html blog.html blog.php post.php newsletter.php unsubscribe.php sitemap.php 404.php robots.txt styles.css script.js .htaccess "$DEPLOYPATH/"
+    - /bin/cp index.html pos-locacao.html consultoria.html parceiros.html blog.html blog.php post.php newsletter.php unsubscribe.php privacidade.php sitemap.php 404.php robots.txt styles.css script.js .htaccess "$DEPLOYPATH/"
     - /bin/cp -R app admin partials "$DEPLOYPATH/"
     - /bin/cp -R assets/. "$DEPLOYPATH/assets/"
     - /usr/bin/test -f "$DEPLOYPATH/data/posts.json" || /bin/cp data/posts.json "$DEPLOYPATH/data/posts.json"
