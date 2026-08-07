@@ -53,6 +53,7 @@ $activePage = 'blog';
         <input id="blog-query" name="q" type="search" value="<?= e($query) ?>" placeholder="Pesquise por título, resumo ou conteúdo" maxlength="100">
         <button type="submit">Pesquisar</button>
       </form>
+      <div class="blog-topics" aria-label="Assuntos do blog"><span>Locação</span><span>Patrimônio</span><span>Contratos</span><span>Segurança jurídica</span></div>
     </div>
   </section>
 
@@ -67,6 +68,7 @@ $activePage = 'blog';
           <img src="/<?= e(ltrim((string) ($featured['image'] ?? 'assets/guitton-social.jpg'), '/')) ?>" alt="<?= e((string) ($featured['image_alt'] ?? $featured['title'])) ?>">
         </a>
         <div class="featured-copy">
+          <span class="featured-number" aria-hidden="true">01</span>
           <p class="eyebrow">EM DESTAQUE</p>
           <h2><a href="/post.php?slug=<?= rawurlencode((string) $featured['slug']) ?>"><?= e((string) $featured['title']) ?></a></h2>
           <p><?= e((string) $featured['summary']) ?></p>
