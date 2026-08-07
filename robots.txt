@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /app/
+Disallow: /data/
+Disallow: /partials/
+Disallow: /tests/
+
+Sitemap: https://guitton.com.br/sitemap.php
